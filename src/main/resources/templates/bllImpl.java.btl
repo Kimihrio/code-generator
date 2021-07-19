@@ -1,0 +1,23 @@
+package ${bllImplPackagePath};
+
+import ${bllPackagePath}.${bllName};
+import ${package.Service}.${table.serviceName};
+import ${package.Mapper}.${table.mapperName};
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ * ${table.comment} 业务实现类
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+public class ${bllImplName} implements ${bllName} {
+
+    @Autowired
+    private ${table.serviceName} service;
+
+    @Autowired
+    private ${table.mapperName} mapper;
+
+}

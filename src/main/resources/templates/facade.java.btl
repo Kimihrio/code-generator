@@ -1,0 +1,10 @@
+package ${facadePackagePath};
+
+/**
+ * ${table.comment!} 门面层接口
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${facadeName} {
+
+}

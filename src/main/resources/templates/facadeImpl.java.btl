@@ -1,0 +1,19 @@
+package ${facadeImplPackagePath};
+
+import ${facadePackagePath}.${facadeName};
+import ${bllPackagePath}.${bllName};
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+/**
+ * ${table.comment} 门面实现类
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+public class ${facadeImplName} implements ${facadeName} {
+
+    @Autowired
+    private ${bllName} bll;
+
+}

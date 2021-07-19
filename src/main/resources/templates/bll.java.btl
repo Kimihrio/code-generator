@@ -1,0 +1,10 @@
+package ${bllPackagePath};
+
+/**
+ * ${table.comment!} 业务层接口
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${bllName} {
+
+}
