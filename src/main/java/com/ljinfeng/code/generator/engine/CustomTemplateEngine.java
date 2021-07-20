@@ -8,7 +8,9 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.BeetlTemplateEngine;
 import com.ljinfeng.code.generator.builder.BLL;
+import com.ljinfeng.code.generator.builder.DTO;
 import com.ljinfeng.code.generator.builder.Facade;
+import com.ljinfeng.code.generator.builder.Params;
 import com.ljinfeng.code.generator.constant.Constant;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,6 +27,10 @@ import java.util.Optional;
  */
 public class CustomTemplateEngine extends BeetlTemplateEngine {
 
+    private Params params;
+
+    private DTO dto;
+
     private BLL bll;
 
     private Facade facade;
@@ -33,6 +39,12 @@ public class CustomTemplateEngine extends BeetlTemplateEngine {
     public @NotNull Map<String, Object> getObjectMap(@NotNull ConfigBuilder config, @NotNull TableInfo tableInfo) {
 
         Map<String, Object> objectMap = super.getObjectMap(config, tableInfo);
+        //params
+        params = (new Params.Builder(config.getStrategyConfig(), config)).get();
+        objectMap.put("params", params.renderData(tableInfo));
+        //dto
+        dto = (new DTO.Builder(config.getStrategyConfig(), config)).get();
+        objectMap.put("dto", dto.renderData(tableInfo));
         //bll
         bll = (new BLL.Builder(config.getStrategyConfig(), config)).get();
         objectMap.put("bll", bll.renderData(tableInfo));
@@ -59,6 +71,10 @@ public class CustomTemplateEngine extends BeetlTemplateEngine {
 
                 // Mp.java
                 outputEntity(tableInfo, objectMap);
+                // Params.java
+                outputParams(tableInfo.getEntityName(), objectMap, config);
+                // DTO.java
+                outputDTO(tableInfo.getEntityName(), objectMap, config);
                 // mapper and xml
                 outputMapper(tableInfo, objectMap);
                 // service
@@ -76,6 +92,86 @@ public class CustomTemplateEngine extends BeetlTemplateEngine {
         }
 
         return this;
+    }
+
+    /**
+     * 输出params文件
+     *
+     * @param entityName
+     * @param objectMap
+     * @param config
+     */
+    private void outputParams(@NotNull String entityName, @NotNull Map<String, Object> objectMap, @NotNull ConfigBuilder config) {
+
+        if (params == null) {
+            System.out.println("未初始化params配置信息");
+            return;
+        }
+
+        //初始化路径
+        this.initParamsConfig(config);
+
+        String paramsPath = getPathInfo(Constant.PARAMS_PATH);
+        String paramsName = params.getConverterParamsFileName().convert(entityName);
+        if (StringUtils.isNotBlank(paramsPath) && StringUtils.isNotBlank(paramsName)) {
+            String paramsFile = String.format((paramsPath + File.separator + paramsName + suffixJavaOrKt()), entityName);
+            outputFile(new File(paramsFile), objectMap, params.getParamsTempleFilePath());
+        }
+
+    }
+
+    /**
+     * 初始化params配置
+     *
+     * @param config
+     */
+    private void initParamsConfig(ConfigBuilder config) {
+
+        Map<String, String> pathInfo = getConfigBuilder().getPathInfo();
+
+        //params
+        String parentPath = config.getPackageConfig().getParent() + StringPool.DOT + Constant.PARAMS_PACKAGE;
+        pathInfo.put(Constant.PARAMS_PATH, joinPath(config.getGlobalConfig().getOutputDir(), parentPath));
+    }
+
+    /**
+     * 输出params文件
+     *
+     * @param entityName
+     * @param objectMap
+     * @param config
+     */
+    private void outputDTO(@NotNull String entityName, @NotNull Map<String, Object> objectMap, @NotNull ConfigBuilder config) {
+
+        if (dto == null) {
+            System.out.println("未初始化dto配置信息");
+            return;
+        }
+
+        //初始化路径
+        this.initDTOConfig(config);
+
+        String dtoPath = getPathInfo(Constant.DTO_PATH);
+        String dtoName = dto.getConverterDtoFileName().convert(entityName);
+        if (StringUtils.isNotBlank(dtoPath) && StringUtils.isNotBlank(dtoName)) {
+            String paramsFile = String.format((dtoPath + File.separator + dtoName + suffixJavaOrKt()), entityName);
+            outputFile(new File(paramsFile), objectMap, dto.getDtoTempleFilePath());
+        }
+
+    }
+
+    /**
+     * 初始化params配置
+     *
+     * @param config
+     */
+    private void initDTOConfig(ConfigBuilder config) {
+
+        Map<String, String> pathInfo = getConfigBuilder().getPathInfo();
+
+        //params
+        String parentPath = config.getPackageConfig().getParent() + StringPool.DOT + Constant.DTO_PACKAGE;
+        pathInfo.put(Constant.DTO_PATH, joinPath(config.getGlobalConfig().getOutputDir(), parentPath));
     }
 
     /**

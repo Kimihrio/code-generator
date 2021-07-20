@@ -80,16 +80,16 @@ public class BLL implements ITemplate {
 
     public static class Builder extends BaseBuilder {
 
-        private final BLL facade = new BLL();
+        private final BLL bll = new BLL();
 
         public Builder(@NotNull StrategyConfig strategyConfig, @NotNull ConfigBuilder config) {
             super(strategyConfig);
-            facade.config = config;
+            bll.config = config;
         }
 
         @NotNull
         public BLL get() {
-            return this.facade;
+            return this.bll;
         }
     }
 

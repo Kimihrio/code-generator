@@ -8,6 +8,14 @@ import com.baomidou.mybatisplus.generator.config.ConstVal;
  */
 public interface Constant extends ConstVal {
 
+    String PARAMS_PACKAGE = "params";
+    String PARAMS = "Params";
+    String PARAMS_PATH = "params_path";
+
+    String DTO_PACKAGE = "dto";
+    String DTO = "DTO";
+    String DTO_PATH = "dto_path";
+
     String FACADE_PACKAGE = "facade";
     String FACADE_IMPL_PACKAGE = "impl";
     String FACADE = "Facade";
