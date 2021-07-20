@@ -18,6 +18,8 @@
         <mybatis-plus-generator.version>3.5.0</mybatis-plus-generator.version>
         <slf4j-api.version>1.7.31</slf4j-api.version>
         <mysql.version>8.0.13</mysql.version>
+        <ojdbc8.version>21.1.0.0</ojdbc8.version>
+        <postgresql.version>42.2.23</postgresql.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <lombok.version>1.18.20</lombok.version>
         <swagger-annotations.version>1.6.2</swagger-annotations.version>
@@ -56,6 +58,18 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>${ojdbc8.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
 
         <dependency>

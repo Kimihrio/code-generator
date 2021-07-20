@@ -44,9 +44,20 @@ public class GeneratorUtils {
 
     private DataSourceConfig initDataSourceConfig() {
 
-        String url = "jdbc:mysql://192.168.203.17:3306/xtyzt?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC";
-        String username = "root";
-        String password = "Ajo^iURC#r1830";
+        //MySql数据库
+        String url = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC";
+        String username = "xxxxx";
+        String password = "xxxxxxxxx";
+
+        //Oracle数据库
+//        String url = "jdbc:oracle:thin:@127.0.0.1:12013:xe";
+//        String username = "xxxxx";
+//        String password = "xxxxxxxxx";
+
+        //Postgre数据库
+//        String url = "jdbc:postgresql://127.0.0.1:5432/test";
+//        String username = "xxxxx";
+//        String password = "xxxxxxxxx";
 
         //默认mysql，根据url链接自动切换库类型
         return new DataSourceConfig.Builder(url, username, password)
