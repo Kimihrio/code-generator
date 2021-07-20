@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 <% if(isNotEmpty(superControllerClassPackage)){ %>
 import ${superControllerClassPackage};
 <% } %>
-import ${facadePackagePath}.${facadeName};
+import ${facade.Facade}.${facade.FacadeName};
 
 /**
  * ${table.comment!} 前端控制器
@@ -34,7 +34,7 @@ public class ${table.controllerName} {
     <% } %>
 
     @Autowired
-    private ${facadeName} facade;
+    private ${facade.FacadeName} facade;
 
 }
 <% } %>

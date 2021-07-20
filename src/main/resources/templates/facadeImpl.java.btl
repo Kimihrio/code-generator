@@ -1,7 +1,7 @@
-package ${facadeImplPackagePath};
+package ${facade.FacadeImpl};
 
-import ${facadePackagePath}.${facadeName};
-import ${bllPackagePath}.${bllName};
+import ${facade.Facade}.${facade.FacadeName};
+import ${bll.BLL}.${bll.BLLName};
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since ${date}
  */
 @Service
-public class ${facadeImplName} implements ${facadeName} {
+public class ${facade.FacadeImplName} implements ${facade.FacadeName} {
 
     @Autowired
-    private ${bllName} bll;
+    private ${bll.BLLName} bll;
 
 }

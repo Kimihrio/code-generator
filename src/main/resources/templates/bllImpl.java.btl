@@ -1,6 +1,6 @@
-package ${bllImplPackagePath};
+package ${bll.BLLImpl};
 
-import ${bllPackagePath}.${bllName};
+import ${bll.BLL}.${bll.BLLName};
 import ${package.Service}.${table.serviceName};
 import ${package.Mapper}.${table.mapperName};
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since ${date}
  */
 @Service
-public class ${bllImplName} implements ${bllName} {
+public class ${bll.BLLImplName} implements ${bll.BLLName} {
 
     @Autowired
     private ${table.serviceName} service;
